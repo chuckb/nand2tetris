@@ -1,0 +1,92 @@
+plugins {
+  id 'nand2tetris.java-common-conventions'
+  id 'distribution'
+}
+
+group 'com.nand2tetris'
+version '2.5.7.CCB-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jar.enabled = false
+
+sourceSets {
+  main.java.srcDirs = ['BuiltInChipsSource', 'BuiltInVMCodeSource', 'MainClassesSource']
+  main.resources.srcDirs = ['InstallDir']
+}
+
+dependencies {
+  implementation project(':HackPackageSource')
+  implementation project(':SimulatorsPackageSource')
+  implementation project(':HackGUIPackageSource')
+  implementation project(':SimulatorsGUIPackageSource')
+}
+
+distributions {
+  main {
+    distributionBaseName = 'nand2tetris'
+    contents {
+
+      // 1. copy resources into dist zip root -- currently this is just the install dir
+      from("$buildDir/resources/main") {
+        into('.')
+      }
+
+      // 2. copy classes from root of compile source -- this covers the classes with a main function
+      from("$buildDir/classes/java/main") {
+        include "*.class"
+        into("./bin/classes")
+      }
+
+      // 3. copy built in chips/vm codes into the appropriate folder
+      from("$buildDir/classes/java/main/builtInChips") {
+        include "*.class"
+        into("./builtInChips")
+      }
+      from("$buildDir/classes/java/main/builtInVMCode") {
+        include "*.class"
+        into("./builtInVMCode")
+      }
+
+      // 4. copy any built jars into lib folder
+      from(sourceSets.main.runtimeClasspath) { 
+        include "*.jar"
+        into('./bin/lib/.')
+      }
+    }
+  }
+}
+
+tasks.register("runCPUEmulator", JavaExec) {
+  group 'run'
+  description 'Runs the CPU Emulator.'
+  classpath sourceSets.main.runtimeClasspath
+  workingDir "$buildDir/resources/main"
+  main "CPUEmulatorMain"
+}
+
+tasks.register("runHardwareSimulator", JavaExec) {
+  group 'run'
+  description 'Runs the Hardware Simulator.'
+  classpath sourceSets.main.runtimeClasspath
+  workingDir "$buildDir/resources/main"
+  main "HardwareSimulatorMain"
+}
+
+tasks.register("runTextComparer", JavaExec) {
+  group 'run'
+  description 'Runs the Test Comparer.'
+  classpath sourceSets.main.runtimeClasspath
+  workingDir "$buildDir/resources/main"
+  main "TextComparer"
+}
+
+tasks.register("runVMEmulator", JavaExec) {
+  group 'run'
+  description 'Runs the VM Emulator.'
+  classpath sourceSets.main.runtimeClasspath
+  workingDir "$buildDir/resources/main"
+  main "VMEmulatorMain"
+}

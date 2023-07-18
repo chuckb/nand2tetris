@@ -18,8 +18,9 @@ Contents
 --------
 
 1. Directory Structure and Compilation Instructions
-2. The Chip API for Implementation of Chips in Java
-3. The VMCode API for Implementation of VM Functions/Classes in Java
+2. Build Instructions
+3. The Chip API for Implementation of Chips in Java
+4. The VMCode API for Implementation of VM Functions/Classes in Java
 
 
 Directory Structure and Compilation Instructions:
@@ -49,6 +50,30 @@ BuiltInVMCodeSource - should be compiled and copied to InstallDir/builtInVMCode
 
 MainClassesSource - should be compiled and copied to InstallDir/bin/classes
 
+
+Build Instructions
+------------------
+
+This project was pulled from the zipped source on the Nand2Tetris site as of version 2.5.7.
+The original source did not come with automated build scripts, so the Gradle build system was
+added to the project, while leaving the existing project directory structure in tact. Simultaneously,
+the project was compiled with Java 11 and a few minor incompatibilities were fixed.
+
+Windows
+To build the project: `gradlew.bat build`
+To run an application within the project: `gradlew.bat runCPUEmulator`
+To build a redistributable zip: `gradlew.bat assembleDist`
+To see gradle tasks: `gradlew.bat tasks`
+
+*nix
+To build the project: `./gradlew build`
+To run an application within the project: `./gradlew runCPUEmulator`
+To build a redistributable zip: `./gradlew assembleDist`
+To see gradle tasks: `./gradlew tasks`
+
+Artifacts from the assembleDist task will be located in ./build/distributions. You should be able to
+unzip the distribution at any location, and assuming a JRE is installed, run the appropriate .sh or
+.bat file and the application should run.
 
 The Chip API for Implementation of Chips in Java
 ------------------------------------------------

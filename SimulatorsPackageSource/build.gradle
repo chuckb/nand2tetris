@@ -1,0 +1,14 @@
+plugins {
+  id 'nand2tetris.java-library-conventions'
+}
+
+jar.baseName = 'Simulators'
+
+sourceSets {
+  main.java.srcDirs = ['./']
+}
+
+dependencies {
+  api project(':HackPackageSource')
+  api project(':CompilersPackageSource')
+}

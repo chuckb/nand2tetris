@@ -1,0 +1,6 @@
+include('HackPackageSource')
+include('HackGUIPackageSource')
+include('CompilersPackageSource')
+include('SimulatorsPackageSource')
+include('SimulatorsGUIPackageSource')
+

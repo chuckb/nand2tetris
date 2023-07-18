@@ -1,0 +1,9 @@
+plugins {
+  id 'nand2tetris.java-library-conventions'
+}
+
+jar.baseName = 'Hack'
+
+sourceSets {
+  main.java.srcDirs = ['./']
+}

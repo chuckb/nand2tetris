@@ -1,0 +1,13 @@
+plugins {
+  id 'nand2tetris.java-library-conventions'
+}
+
+jar.baseName = 'HackGUI'
+
+sourceSets {
+  main.java.srcDirs = ['./']
+}
+
+dependencies {
+  api project(':HackPackageSource')
+}
