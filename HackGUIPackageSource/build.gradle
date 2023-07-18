@@ -2,7 +2,7 @@ plugins {
   id 'nand2tetris.java-library-conventions'
 }
 
-jar.baseName = 'HackGUI'
+jar.archiveBaseName = 'HackGUI'
 
 sourceSets {
   main.java.srcDirs = ['./']

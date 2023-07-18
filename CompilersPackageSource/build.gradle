@@ -2,7 +2,7 @@ plugins {
   id 'nand2tetris.java-library-conventions'
 }
 
-jar.baseName = 'Compilers'
+jar.archiveBaseName = 'Compilers'
 
 sourceSets {
   main.java.srcDirs = ['./']

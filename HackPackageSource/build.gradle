@@ -2,7 +2,7 @@ plugins {
   id 'nand2tetris.java-library-conventions'
 }
 
-jar.baseName = 'Hack'
+jar.archiveBaseName = 'Hack'
 
 sourceSets {
   main.java.srcDirs = ['./']
